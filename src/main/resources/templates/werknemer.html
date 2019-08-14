@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments::head(title='Werknemer')"></head>
+    <body>
+        <h1 th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
+        <div>voornaam</div>
+        <div th:text="${werknemer.voornaam}"></div>
+        <div>familienaam</div>
+        <div th:text="${werknemer.familienaam}"></div>
+        <div>Email adres</div>
+        <div th:text="${werknemer.email}"></div>
+        <div>Salaris</div>
+        <div th:text="${werknemer.salaris}"></div>
+        <div>Jobtitel</div>
+        <div th:text="${werknemer.jobtitel.naam}"></div>
+        <div>Geboorte</div>
+        <div th:text="${werknemer.geboorte}"></div>
+        <div>Ondergeschikten</div>
+        <div th:each="ondergechikte :${werknemer.ondergeschikten}" th:text="|${ondergechikte.voornaam} ${ondergechikte.familienaamnaam}|"></div>
+        </div>
+    </body>
+</html>
