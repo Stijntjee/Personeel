@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/werknemer")
 public class WerknemerController
@@ -30,12 +32,30 @@ public class WerknemerController
         return modelAndView;
     }
 
-    /*@GetMapping("{id}")
-    public ModelAndView werknemer(@PathVariable long id)
+    @GetMapping("{optionalWerknemer}")
+    public ModelAndView werknemer(@PathVariable Optional<Werknemer> optionalWerknemer)
     {
         ModelAndView modelAndView = new ModelAndView("werknemer");
-
-        modelAndView.addObject("werknemer", id);
+        optionalWerknemer.ifPresent
+                (werknemer ->  modelAndView.addObject("werknemer", werknemer));
         return modelAndView;
-    }*/
+    }
+
+    @GetMapping("{optionalWerknemer}/opslag")
+    public ModelAndView opslagWerknemer(@PathVariable Optional<Werknemer> optionalWerknemer)
+    {
+        ModelAndView modelAndView = new ModelAndView("opslag");
+        optionalWerknemer.ifPresent
+                (werknemer ->  modelAndView.addObject("werknemer", werknemer));
+        return modelAndView;
+    }
+
+    @GetMapping("{optionalWerknemer}/rijksregisternr")
+    public ModelAndView rijksregisternrWerknemer(@PathVariable Optional<Werknemer> optionalWerknemer)
+    {
+        ModelAndView modelAndView = new ModelAndView("rijksregisternr");
+        optionalWerknemer.ifPresent
+                (werknemer ->  modelAndView.addObject("werknemer", werknemer));
+        return modelAndView;
+    }
 }

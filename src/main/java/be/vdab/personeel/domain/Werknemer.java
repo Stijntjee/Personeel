@@ -51,7 +51,11 @@ public class Werknemer implements Serializable
     @OneToMany(mappedBy = "chef")
     private Set<Werknemer> ondergeschikten;
 
-    //CONSTRUCTORS
+    //METHODS
+    public void opslag(BigDecimal bedrag)
+    {
+        salaris = salaris.add(bedrag);
+    }
 
     //GETTERS
     public long getId() {

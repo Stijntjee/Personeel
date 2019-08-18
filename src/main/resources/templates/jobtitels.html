@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments::head(title='jobtitels')"></head>
+    <body>
+        <nav th:replace="fragments::nav"></nav>
+        <h1>Jobtitels</h1>
+            <a class="horizontal link" th:each="jobtitel :${jobtitels}" th:href="@{/jobtitels/{jobtitel} (jobtitel=${jobtitel.id})}" th:text="${jobtitel.naam}"></a>
+        <div th:if="${werknemers}">
+            <h2 th:text="${jobtitel.naam}"></h2>
+
+        </div>
+
+    </body>
+</html>

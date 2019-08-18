@@ -1,22 +1,28 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments::head(title='Werknemer')"></head>
+    <head th:replace="fragments::head(title=${werknemer.voornaam} + ' ' + ${werknemer.familienaam})"></head>
     <body>
+         <nav th:replace="fragments::nav"></nav>
         <h1 th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
-        <div>voornaam</div>
-        <div th:text="${werknemer.voornaam}"></div>
-        <div>familienaam</div>
-        <div th:text="${werknemer.familienaam}"></div>
-        <div>Email adres</div>
-        <div th:text="${werknemer.email}"></div>
+        <div class="bold" >
+            <a class="horizontal link" th:href="@{/werknemer/{id}/opslag (id=${werknemer.id})}">Opslag</a>
+            <a  class="horizontal link" th:href="@{/werknemer/{id}/rijksregisternr(id=${werknemer.id})}">Rijksregisternummer</a></div>
+        <div>Voornaam</div>
+        <div class="bold" th:text="${werknemer.voornaam}"></div>
+        <div>Familienaam</div>
+        <div class="bold"  th:text="${werknemer.familienaam}"></div>
+        <div>Emailadres</div>
+        <div class="bold" th:text="${werknemer.email}"></div>
         <div>Salaris</div>
-        <div th:text="${werknemer.salaris}"></div>
+        <div class="bold" th:text="${werknemer.salaris}"></div>
         <div>Jobtitel</div>
-        <div th:text="${werknemer.jobtitel.naam}"></div>
+        <div class="bold" th:text="${werknemer.jobtitel.naam}"></div>
         <div>Geboorte</div>
-        <div th:text="${werknemer.geboorte}"></div>
-        <div>Ondergeschikten</div>
-        <div th:each="ondergechikte :${werknemer.ondergeschikten}" th:text="|${ondergechikte.voornaam} ${ondergechikte.familienaamnaam}|"></div>
-        </div>
+        <div class="bold" th:text="${werknemer.geboorte}"></div>
+        <img th:src="@{/images/{id}.jpg (id=${werknemer.id})}" th:alt="|${werknemer.voornaam} ${werknemer.familienaam}|"/>
+        <div>
+        <div th:if="${!werknemer.ondergeschikten.isEmpty()}">Ondergeschikten</div>
+        <div th:each="ondergeschikte :${werknemer.ondergeschikten}">
+            <a class="bold" th:text="|${ondergeschikte.voornaam} ${ondergeschikte.familienaam}|" th:href="@{/werknemer/{id} (id=${ondergeschikte.id})}"></a>
     </body>
 </html>

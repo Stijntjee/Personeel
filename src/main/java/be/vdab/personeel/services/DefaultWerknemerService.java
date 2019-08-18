@@ -1,11 +1,13 @@
 package be.vdab.personeel.services;
 
+import be.vdab.personeel.domain.Jobtitel;
 import be.vdab.personeel.domain.Werknemer;
 import be.vdab.personeel.repositories.WerknemerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,5 +25,10 @@ public class DefaultWerknemerService implements WerknemerService
     @Override
     public Optional<Werknemer> findBigBoss() {
         return werknemerRepository.findByChefIsNull();
+    }
+
+    @Override
+    public List<Werknemer> findByJobtitel(Jobtitel jobtitel) {
+        return werknemerRepository.findByJobtitel(jobtitel);
     }
 }

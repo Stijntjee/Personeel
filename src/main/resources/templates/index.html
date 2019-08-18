@@ -2,10 +2,9 @@
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments::head(title='Menu')"></head>
     <body>
+    <nav th:replace="fragments::nav"></nav>
         <h1>Menu</h1>
-        <ul>
-            <li><a th:href="@{/werknemer}">Werknemershiërarchie</a></li>
-            <li><a th:href="@{/jobtitels}">Jobtitels</a></li>
-        </ul>
+            <a class="link vertical" th:href="@{/werknemer}">Werknemershiërarchie</a>
+            <a class="link vertical" th:href="@{/jobtitels}">Jobtitels</a>
     </body>
 </html>

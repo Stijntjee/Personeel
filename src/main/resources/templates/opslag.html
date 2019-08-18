@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Opslag ' + ${werknemer.voornaam} + ' ' + ${werknemer.familienaam})"></head>
+    <body>
+        <nav th:replace="fragments::nav"></nav>
+        <h1 th:text="|Opslag voor ${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
+        <div>Huidig salaris</div>
+        <div class="bold" th:text="${werknemer.salaris}"></div>
+        <div>bedrag</div>
+        <form>
+            <input type="text">
+            <input type="button" th:value="Opslag"/>
+        </form>
+
+    </body>
+</html>
