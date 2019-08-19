@@ -45,3 +45,14 @@ a
 ul {
     padding-left: 0px;
 }
+
+input
+{
+    border:  solid 1px crimson;
+    color: crimson;
+}
+
+form
+{
+    display: inline;
+}

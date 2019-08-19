@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments::head(title='Rijksregisternummer ' + ${werknemer.voornaam} + ' ' + ${werknemer.familienaam})"></head>
-<body>
-<nav th:replace="fragments::nav"></nav>
-<h1 th:text="|Rijksregisternummer van ${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
-<div>Rijksregisternummer</div>
-<form>
-    <input type="text" th:value="${werknemer.rijksregisternr}">
-    <input type="button" th:value="Opslaan">
-</form>
-
-</body>
+    <body>
+        <nav th:replace="fragments::nav"></nav>
+        <h1 th:text="|Rijksregisternummer van ${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
+        <div>Rijksregisternummer</div>
+        <form th:action="@{/werknemer/{id}/rijksregisternr (id=${werknemer.id})}" method="post" th:object="${rijksregisternrForm}">
+            <input th:value="${werknemer.rijksregisternr}" th:field="*{rijksregisternr}" type="number" autofocus>
+            <input type="submit" th:value="Opslaan">
+        </form>
+    </body>
 </html>

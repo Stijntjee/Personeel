@@ -20,9 +20,13 @@
         <div>Geboorte</div>
         <div class="bold" th:text="${werknemer.geboorte}"></div>
         <img th:src="@{/images/{id}.jpg (id=${werknemer.id})}" th:alt="|${werknemer.voornaam} ${werknemer.familienaam}|"/>
-        <div>
+         <div th:if="${werknemer.chef != null}">
+             <div>Chef</div>
+             <a class="bold" th:text="|${werknemer.chef.voornaam} ${werknemer.chef.familienaam}|" th:href="@{/werknemer/{id} (id=${werknemer.chef.id})}"></a>
+         </div>
         <div th:if="${!werknemer.ondergeschikten.isEmpty()}">Ondergeschikten</div>
         <div th:each="ondergeschikte :${werknemer.ondergeschikten}">
             <a class="bold" th:text="|${ondergeschikte.voornaam} ${ondergeschikte.familienaam}|" th:href="@{/werknemer/{id} (id=${ondergeschikte.id})}"></a>
+        </div>
     </body>
 </html>

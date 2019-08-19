@@ -7,9 +7,9 @@
         <div>Huidig salaris</div>
         <div class="bold" th:text="${werknemer.salaris}"></div>
         <div>bedrag</div>
-        <form>
-            <input type="text">
-            <input type="button" th:value="Opslag"/>
+        <form th:action="@{/werknemer/{id}/opslag (id=${werknemer.id})}" method="post" th:object="${opslagForm}">
+            <input  th:field="*{opslag}" type="number" required min="1" autofocus>
+            <input type="submit" th:value="Opslag"/>
         </form>
 
     </body>

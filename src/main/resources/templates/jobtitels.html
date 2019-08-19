@@ -4,11 +4,12 @@
     <body>
         <nav th:replace="fragments::nav"></nav>
         <h1>Jobtitels</h1>
-            <a class="horizontal link" th:each="jobtitel :${jobtitels}" th:href="@{/jobtitels/{jobtitel} (jobtitel=${jobtitel.id})}" th:text="${jobtitel.naam}"></a>
+        <a class="horizontal link" th:each="jt :${jobtitels}" th:href="@{/jobtitels/{jobtitel} (jobtitel=${jt.id})}" th:text="${jt.naam}"></a>
         <div th:if="${werknemers}">
             <h2 th:text="${jobtitel.naam}"></h2>
-
+            <div th:each="werknemer :${jobtitel.werknemers}">
+                <a class="bold" th:text="|${werknemer.voornaam} ${werknemer.familienaam}|" th:href="@{/werknemer/{id} (id=${werknemer.id})}"></a>
+            </div>
         </div>
-
     </body>
 </html>

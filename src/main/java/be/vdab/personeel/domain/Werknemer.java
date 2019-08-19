@@ -1,5 +1,6 @@
 package be.vdab.personeel.domain;
 
+import be.vdab.personeel.constraints.RijksregisterNummer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -29,7 +30,6 @@ public class Werknemer implements Serializable
     private String email;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "chefid")
-    @NotNull
     private Werknemer chef;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "jobtitelid")
@@ -43,7 +43,7 @@ public class Werknemer implements Serializable
     @DateTimeFormat(style = "S-")
     private LocalDate geboorte;
     @NotNull
-    //@RijksregisterNummer
+    @RijksregisterNummer
     private long rijksregisternr;
     @Version
     private int versie;
@@ -55,6 +55,11 @@ public class Werknemer implements Serializable
     public void opslag(BigDecimal bedrag)
     {
         salaris = salaris.add(bedrag);
+    }
+
+    public void setRijksregisternr(long rijksregisternr)
+    {
+        this.rijksregisternr = rijksregisternr;
     }
 
     //GETTERS
