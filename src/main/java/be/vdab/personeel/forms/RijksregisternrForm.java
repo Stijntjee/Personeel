@@ -14,7 +14,7 @@ public class RijksregisternrForm
     private LocalDate geboorte;
 
     //CONSTRUCTORS
-    public RijksregisternrForm(@NotNull Long rijksregisternr, @NotNull LocalDate geboorte)
+    public RijksregisternrForm(@NotNull Long rijksregisternr, LocalDate geboorte)
     {
         this.rijksregisternr = rijksregisternr;
         this.geboorte = geboorte;
@@ -27,5 +27,9 @@ public class RijksregisternrForm
 
     public Long getRijksregisternr() {
         return rijksregisternr;
+    }
+
+    public void setGeboorte(LocalDate geboorte) {
+        this.geboorte = geboorte;
     }
 }

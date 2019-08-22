@@ -17,7 +17,6 @@ public class RijksregisterNummerValidator implements ConstraintValidator<Rijksre
     public boolean isValid(RijksregisternrForm rijksregisternrForm, ConstraintValidatorContext constraintValidatorContext) {
         Long nummer = rijksregisternrForm.getRijksregisternr();
         LocalDate geboorte = rijksregisternrForm.getGeboorte();
-
         if (nummer == null || geboorte == null)
         {
             boolean jaar = (geboorte.getYear() % 100) == (nummer / 1000000000);

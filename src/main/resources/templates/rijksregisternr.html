@@ -9,6 +9,7 @@
             <input th:value="${werknemer.rijksregisternr}" th:field="*{rijksregisternr}" type="number" autofocus>
             <input type="submit" th:value="Opslaan">
             <div th:if="${#fields.hasGlobalErrors()}">
+                <span th:errors="*{rijksregisternr}"></span>
                 <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
             </div>
         </form>

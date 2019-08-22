@@ -20,4 +20,5 @@ public class OpslagForm
     public BigDecimal getOpslag() {
         return opslag;
     }
+
 }

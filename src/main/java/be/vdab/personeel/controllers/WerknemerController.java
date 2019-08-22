@@ -72,13 +72,14 @@ public class WerknemerController
     }
 
     @GetMapping("{optionalWerknemer}/rijksregisternr")
-    public ModelAndView rijksregisternrWerknemer(@PathVariable Optional<Werknemer> optionalWerknemer,@Valid RijksregisternrForm form, Errors errors)
+    public ModelAndView rijksregisternrWerknemer(@PathVariable Optional<Werknemer> optionalWerknemer, RijksregisternrForm form, Errors errors)
     {
 
         ModelAndView modelAndView = new ModelAndView("rijksregisternr");
         if (! errors.hasErrors())
         {
-            optionalWerknemer.ifPresent(werknemer -> modelAndView.addObject("rijksregisternr").addObject(new RijksregisternrForm(null, werknemer.getGeboorte())));
+            optionalWerknemer.ifPresent(werknemer -> form.setGeboorte(werknemer.getGeboorte()));
+            modelAndView.addObject("rijksregisternr").addObject(new RijksregisternrForm(null, null));
         }
         optionalWerknemer.ifPresent
                 (werknemer ->  modelAndView.addObject("werknemer", werknemer));
@@ -89,6 +90,7 @@ public class WerknemerController
     public String postRijksregisternrWerknemer(@PathVariable Long id, RedirectAttributes redirectAttributes, @Valid RijksregisternrForm form)
     {
         redirectAttributes.addAttribute("id", id);
+        form.setGeboorte(LocalDate.now());
         werknemerService.wijzigRijksregisternr(id,form.getRijksregisternr());
         return "redirect:/werknemer/{id}";
     }
