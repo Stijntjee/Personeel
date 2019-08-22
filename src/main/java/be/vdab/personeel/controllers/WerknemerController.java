@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
@@ -70,10 +72,14 @@ public class WerknemerController
     }
 
     @GetMapping("{optionalWerknemer}/rijksregisternr")
-    public ModelAndView rijksregisternrWerknemer(@PathVariable Optional<Werknemer> optionalWerknemer, @Valid RijksregisternrForm form, Errors errors)
+    public ModelAndView rijksregisternrWerknemer(@PathVariable Optional<Werknemer> optionalWerknemer,@Valid RijksregisternrForm form, Errors errors)
     {
+
         ModelAndView modelAndView = new ModelAndView("rijksregisternr");
-        modelAndView.addObject("rijksregisternr").addObject(new RijksregisternrForm(null));
+        if (! errors.hasErrors())
+        {
+            optionalWerknemer.ifPresent(werknemer -> modelAndView.addObject("rijksregisternr").addObject(new RijksregisternrForm(null, werknemer.getGeboorte())));
+        }
         optionalWerknemer.ifPresent
                 (werknemer ->  modelAndView.addObject("werknemer", werknemer));
         return modelAndView;
@@ -82,8 +88,8 @@ public class WerknemerController
     @PostMapping("{id}/rijksregisternr")
     public String postRijksregisternrWerknemer(@PathVariable Long id, RedirectAttributes redirectAttributes, @Valid RijksregisternrForm form)
     {
-        werknemerService.wijzigRijksregisternr(id,form.getRijksregisternr());
         redirectAttributes.addAttribute("id", id);
-        return REDIRECT;
+        werknemerService.wijzigRijksregisternr(id,form.getRijksregisternr());
+        return "redirect:/werknemer/{id}";
     }
 }

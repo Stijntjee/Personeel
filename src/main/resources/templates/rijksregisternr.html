@@ -8,6 +8,10 @@
         <form th:action="@{/werknemer/{id}/rijksregisternr (id=${werknemer.id})}" method="post" th:object="${rijksregisternrForm}">
             <input th:value="${werknemer.rijksregisternr}" th:field="*{rijksregisternr}" type="number" autofocus>
             <input type="submit" th:value="Opslaan">
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+            </div>
         </form>
+        <div th:text="|Huidig rijksRegisternr: ${werknemer.rijksregisternr}|"></div>
     </body>
 </html>

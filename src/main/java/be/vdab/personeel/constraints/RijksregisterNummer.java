@@ -10,7 +10,7 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Retention(RUNTIME)
-@Target({FIELD, METHOD, ANNOTATION_TYPE, })
+@Target({FIELD, METHOD, ANNOTATION_TYPE, TYPE })
 @Constraint(validatedBy = RijksregisterNummerValidator.class)
 public @interface RijksregisterNummer
 {
