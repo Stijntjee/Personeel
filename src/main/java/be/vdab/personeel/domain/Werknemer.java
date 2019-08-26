@@ -43,7 +43,7 @@ public class Werknemer implements Serializable
     @DateTimeFormat(style = "S-")
     private LocalDate geboorte;
     @NotNull
-    @RijksregisterNummer
+    @Column(unique = true)
     private long rijksregisternr;
     @Version
     private int versie;

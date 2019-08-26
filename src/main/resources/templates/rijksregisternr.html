@@ -4,15 +4,18 @@
     <body>
         <nav th:replace="fragments::nav"></nav>
         <h1 th:text="|Rijksregisternummer van ${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
-        <div>Rijksregisternummer</div>
+        <div>Huidig rijksregisternummer</div>
+        <div th:text="${werknemer.rijksregisternr}" class="bold"></div>
         <form th:action="@{/werknemer/{id}/rijksregisternr (id=${werknemer.id})}" method="post" th:object="${rijksregisternrForm}">
-            <input th:value="${werknemer.rijksregisternr}" th:field="*{rijksregisternr}" type="number" autofocus>
-            <input type="submit" th:value="Opslaan">
+            <div>Nieuw rijksregisternummer</div>
+            <input type="hidden" th:value="${werknemer.geboorte}" th:field="*{geboorte}"/>
+            <input th:value="${werknemer.rijksregisternr}" th:field="*{rijksregisternr}" type="number"/>
+            <input type="submit" th:value="Opslaan"/>
             <div th:if="${#fields.hasGlobalErrors()}">
-                <span th:errors="*{rijksregisternr}"></span>
-                <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                <span th:errors="${rijksregisternrForm}"></span>
+                <span th:errors="*{geboorte}" ></span>
             </div>
         </form>
-        <div th:text="|Huidig rijksRegisternr: ${werknemer.rijksregisternr}|"></div>
+
     </body>
 </html>
